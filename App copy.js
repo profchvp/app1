@@ -17,6 +17,11 @@ export default function App(){
 
   const [list,setList]=useState([]);
 
+  function handleDelete(item){
+   alert("delete")
+    console.log(item)
+
+  }
 
 
   function handleAdd(){
@@ -24,7 +29,7 @@ export default function App(){
     if(tarefa===''){
       return;
     }
-    //alert("teste")
+    alert("teste")
     const dados={
       key:Date.now(),
       item: tarefa
@@ -33,15 +38,6 @@ export default function App(){
     setList(oldArray =>[dados, ...oldArray]);
     setTarefa('');
   }
-  function handleDelete(item){
-    //console.log(item);
-    let filtroitem = list.filter((tarefa)=>{
-      return (tarefa.item!==item)
-    })
-    //console.log(filtroitem)
-    setList(filtroitem)
-  }
-  //======================================
    return (
     <View style={styles.container}>
         <Text style={[styles.title]}>Tarefas</Text>
@@ -62,8 +58,8 @@ export default function App(){
         <FlatList
             data={list}
             keyExtractor={(item)=>item.key}
-            renderItem={({item})=><Tarefa data={item} deleteItem={()=>handleDelete(item.item)}
-            />}
+            renderItem={({item})=><Tarefa data={item}
+            delete={()=>handleDelete(item.item)}/>}
               style={styles.list}
 
         />
